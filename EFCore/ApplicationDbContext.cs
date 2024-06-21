@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EFCore.Configrations;
+using EFCore.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFCore
 {
@@ -7,6 +9,14 @@ namespace EFCore
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlServer("Server=.;Database=EFCore;Trusted_Connection=True;TrustServerCertificate=True");
 
-        public DbSet<Employee> Employees { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            new BlogEntityTypeConfigration().Configure(modelBuilder.Entity<Blog>());
+
+            //Same as above but with other syntax
+            //modelBuilder.ApplyConfigurationsFromAssembly(typeof(BlogEntityTypeConfigration).Assembly);
+        }
+
+        public DbSet<Blog> Blogs { get; set; }
     }
 }
