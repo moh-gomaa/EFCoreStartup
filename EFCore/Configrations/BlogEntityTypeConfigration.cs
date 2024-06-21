@@ -10,8 +10,7 @@ namespace EFCore.Configrations
         {
             builder
                 .Property(m => m.Url)
-                .IsRequired()
-                .HasMaxLength(10);
+                .IsRequired();
         }
     }
 }
