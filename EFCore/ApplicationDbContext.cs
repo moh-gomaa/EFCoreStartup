@@ -35,6 +35,23 @@ namespace EFCore
             modelBuilder.Entity<Tag>()
                 .ToTable("Tags", schema: "blogging")
                 .ToView("SelectTags");
+
+            //Ignore or drop propery from the table using fluent api.
+            modelBuilder.Entity<Post>()
+                .Ignore(t => t.CreatedAt);
+
+            //To change multi columns name and other properties using fluent api.
+            modelBuilder.Entity<Blog>(eb =>
+            {
+                eb.Property(b => b.Name)
+                    .HasColumnName("BlogName")
+                    .HasMaxLength(150)
+                    .HasComment("The name of the blog");
+
+                eb.Property(b => b.Url)
+                    .HasColumnName("BlogUrl")
+                    .HasColumnType("varchar(250)");
+            });
         }
 
         //Add entity to database (First Method) which is default one.

@@ -1,4 +1,6 @@
-﻿namespace EFCore.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace EFCore.Models
 {
     public class Post
     {
@@ -8,6 +10,10 @@
 
         //Add entity to database (Second Method) using navigation property.
         public Blog Blog { get; set; }
+
+        //Ignore property from migration using data annotations.
+        [NotMapped]
+        public DateTime CreatedAt { get; set; }
 
 
         public List<Tag> Tags { get; set; }
