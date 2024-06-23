@@ -52,9 +52,20 @@ namespace EFCore
                     .HasColumnName("BlogUrl")
                     .HasColumnType("varchar(250)");
             });
+
+            //To set primary key and change its name using fluent api.
+            //modelBuilder.Entity<Book>()
+            //    .HasKey(b => b.BookKey)
+            //    .HasName("PK_BookKey");
+
+            //To set composite key and change name of it using fluent api.
+            modelBuilder.Entity<Book>()
+                .HasKey(b => new { b.Name, b.Author })
+                .HasName("Pk_BookKey");
         }
 
         //Add entity to database (First Method) which is default one.
         public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Book> Books { get; set; }
     }
 }
