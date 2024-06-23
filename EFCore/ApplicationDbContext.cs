@@ -23,8 +23,18 @@ namespace EFCore
             //modelBuilder.Ignore<BlogPoint>();
 
             //To exclude the table from migration (Don't listen to changes) but still in database.
+            //Also change table name with fluent api
             modelBuilder.Entity<BlogPoint>()
-                .ToTable("BlogPoint", t => t.ExcludeFromMigrations());
+                .ToTable("BlogPoints", t => t.ExcludeFromMigrations());
+
+            //To set default schema for database
+            //modelBuilder.HasDefaultSchema("blogging");
+
+            //Change table name and table schema using fluent api
+            //Also, map domain model to View also
+            modelBuilder.Entity<Tag>()
+                .ToTable("Tags", schema: "blogging")
+                .ToView("SelectTags");
         }
 
         //Add entity to database (First Method) which is default one.

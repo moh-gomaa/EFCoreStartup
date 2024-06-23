@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240621071840_AddBlogPointsTable")]
+    [Migration("20240623014942_AddBlogPointsTable")]
     partial class AddBlogPointsTable
     {
         /// <inheritdoc />
@@ -77,6 +77,10 @@ namespace EFCore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ExtraInfo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -85,7 +89,7 @@ namespace EFCore.Migrations
 
                     b.HasIndex("BlogId");
 
-                    b.ToTable("BlogPoint");
+                    b.ToTable("BlogPoints", (string)null);
                 });
 
             modelBuilder.Entity("EFCore.Models.Post", b =>

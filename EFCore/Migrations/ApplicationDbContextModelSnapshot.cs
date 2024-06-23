@@ -74,6 +74,10 @@ namespace EFCore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ExtraInfo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -82,7 +86,7 @@ namespace EFCore.Migrations
 
                     b.HasIndex("BlogId");
 
-                    b.ToTable("BlogPoint", (string)null);
+                    b.ToTable("BlogPoints", (string)null);
                 });
 
             modelBuilder.Entity("EFCore.Models.Post", b =>

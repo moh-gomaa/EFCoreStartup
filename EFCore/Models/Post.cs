@@ -8,5 +8,8 @@
 
         //Add entity to database (Second Method) using navigation property.
         public Blog Blog { get; set; }
+
+
+        public List<Tag> Tags { get; set; }
     }
 }

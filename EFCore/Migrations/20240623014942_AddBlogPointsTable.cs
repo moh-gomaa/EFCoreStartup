@@ -11,20 +11,21 @@ namespace EFCore.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "BlogPoint",
+                name: "BlogPoints",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExtraInfo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BlogId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BlogPoint", x => x.Id);
+                    table.PrimaryKey("PK_BlogPoints", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BlogPoint_Blogs_BlogId",
+                        name: "FK_BlogPoints_Blogs_BlogId",
                         column: x => x.BlogId,
                         principalTable: "Blogs",
                         principalColumn: "Id",
@@ -32,8 +33,8 @@ namespace EFCore.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_BlogPoint_BlogId",
-                table: "BlogPoint",
+                name: "IX_BlogPoints_BlogId",
+                table: "BlogPoints",
                 column: "BlogId");
         }
 
@@ -41,7 +42,7 @@ namespace EFCore.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "BlogPoint");
+                name: "BlogPoints");
         }
     }
 }

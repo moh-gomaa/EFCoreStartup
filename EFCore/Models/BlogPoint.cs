@@ -1,5 +1,9 @@
-﻿namespace EFCore.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace EFCore.Models
 {
+    //To change table name using data annotations
+    //[Table("BlogPoints")]
     public class BlogPoint
     {
         public int Id { get; set; }
