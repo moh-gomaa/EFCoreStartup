@@ -3,18 +3,14 @@ using EFCore.Models;
 
 var _context = new ApplicationDbContext();
 
-//var blog = new Blog
+//var author = new Author
 //{
-//    Name = "Test blog",
-//    Url = "test-blog.com"
+//    FirstName = "Mohamed",
+//    LastName = "Gomaa"
 //};
 
-var blog = new Blog
-{
-    Name = "Test blog2",
-    Url = "test-blog2.com",
-    Rating = 4
-};
+//To get row with Id = 1
+var row =_context.Authors.Find(1);
+row.LastName = "Salem";
 
-_context.Blogs.Add(blog);
 _context.SaveChanges();

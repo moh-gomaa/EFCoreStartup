@@ -70,10 +70,16 @@ namespace EFCore
             modelBuilder.Entity<Book>()
                 .HasKey(b => new { b.Name, b.Author })
                 .HasName("Pk_BookKey");
+
+            //To set computed column using fluent api.
+            modelBuilder.Entity<Author>()
+                .Property(a => a.DisplayName)
+                .HasComputedColumnSql("[LastName] + ', ' + [FirstName]");
         }
 
         //Add entity to database (First Method) which is default one.
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Book> Books { get; set; }
+        public DbSet<Author> Authors { get; set; }
     }
 }
