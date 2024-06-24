@@ -51,6 +51,14 @@ namespace EFCore
                 eb.Property(b => b.Url)
                     .HasColumnName("BlogUrl")
                     .HasColumnType("varchar(250)");
+
+                //To set default value to column using fluent api.
+                eb.Property(b => b.Rating)
+                    .HasDefaultValue(2);
+
+                //To set default sql value to column using fluent api.
+                eb.Property(b => b.CreatedAt)
+                    .HasDefaultValueSql("GETDATE()");
             });
 
             //To set primary key and change its name using fluent api.

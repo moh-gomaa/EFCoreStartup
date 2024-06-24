@@ -17,6 +17,9 @@ namespace EFCore.Models
         [Comment("The url of the blog")]
         public string? Url { get; set; }
 
+        public int Rating { get; set; }
+        public DateTime CreatedAt { get; set; }
+
         //Add entity to database (Second Method) using navigation property.
         public List<Post> Posts { get; set; }
 
