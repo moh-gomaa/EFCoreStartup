@@ -75,11 +75,17 @@ namespace EFCore
             modelBuilder.Entity<Author>()
                 .Property(a => a.DisplayName)
                 .HasComputedColumnSql("[LastName] + ', ' + [FirstName]");
+
+            //To set generated identity column with fluent api.
+            modelBuilder.Entity<Category>()
+                .Property(c => c.Id)
+                .ValueGeneratedOnAdd();
         }
 
         //Add entity to database (First Method) which is default one.
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }

@@ -3,14 +3,11 @@ using EFCore.Models;
 
 var _context = new ApplicationDbContext();
 
-//var author = new Author
-//{
-//    FirstName = "Mohamed",
-//    LastName = "Gomaa"
-//};
+var category = new Category
+{
+    Name = "Test3"
+};
 
-//To get row with Id = 1
-var row =_context.Authors.Find(1);
-row.LastName = "Salem";
+_context.Categories.Add(category);
 
 _context.SaveChanges();
