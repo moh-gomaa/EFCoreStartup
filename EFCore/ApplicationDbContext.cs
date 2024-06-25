@@ -59,6 +59,11 @@ namespace EFCore
                 //To set default sql value to column using fluent api.
                 eb.Property(b => b.CreatedAt)
                     .HasDefaultValueSql("GETDATE()");
+
+                //Identify one-to-one relationship between Blog entity (parent/principal entity) and BlogImage entity (child/dependant entity).
+                eb.HasOne(b => b.BlogImage)
+                    .WithOne(bi => bi.Blog)
+                    .HasForeignKey<BlogImage>(bi => bi.BlogForeignKey);
             });
 
             //To set primary key and change its name using fluent api.
