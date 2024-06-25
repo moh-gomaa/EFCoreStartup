@@ -85,6 +85,41 @@ namespace EFCore
             modelBuilder.Entity<Category>()
                 .Property(c => c.Id)
                 .ValueGeneratedOnAdd();
+
+            //To set computed column using fluent api.
+            modelBuilder.Entity<Apartment>()
+                .Property(a => a.Size)
+                .HasComputedColumnSql("[Width] * [Height]");
+
+            //To create one-to-many relationship with reference navigation property and collection navigation property (Recommended) (First way).
+            //You have to use 1st way or 2nd way.
+            modelBuilder.Entity<Apartment>()
+                .HasMany(a => a.ApartmentOwner)
+                .WithOne(ao => ao.Apartment)
+                .HasForeignKey(ao => ao.ApartmentKey)
+                .HasConstraintName("FK_ApartmentOwner_Test");
+
+            //To create one-to-many relationship with reference navigation property and collection navigation property (Recommended) (Second way).
+            //You have to use 2nd way or 1st way.
+            //modelBuilder.Entity<ApartmentOwner>()
+            //    .HasOne(ao => ao.Apartment)
+            //    .WithMany(a => a.ApartmentOwner)
+            //    .HasForeignKey(ao => ao.ApartmentKey)
+            //    .HasConstraintName("FK_Test");
+
+
+            //To create one-to-many relationshio without any navigation property with custom foreign key name (Not recommended at all) (First way).
+            //modelBuilder.Entity<Apartment>()
+            //    .HasMany<ApartmentOwner>()
+            //    .WithOne()
+            //    .HasForeignKey(ao => ao.ApartmentKey);
+
+            //To create one-to-many relationshio without any navigation property with custom foreign key name (Not recommended at all) (Second way).
+            //modelBuilder.Entity<ApartmentOwner>()
+            //    .HasOne<Apartment>()
+            //    .WithMany()
+            //    .HasForeignKey(ao => ao.ApartmentKey);
+
         }
 
         //Add entity to database (First Method) which is default one.
@@ -92,5 +127,7 @@ namespace EFCore
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Apartment> Apartments { get; set; }
+        public DbSet<ApartmentOwner> ApartmentOwners { get; set; }
     }
 }
